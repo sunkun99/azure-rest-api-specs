@@ -17069,29 +17069,6 @@
             "read"
           ]
         },
-        "notificationSetting": {
-          "description": "Notification setting for the job",
-          "$ref": "#/definitions/NotificationSetting",
-          "x-ms-mutability": [
-            "create",
-            "read",
-            "update"
-          ],
-          "x-nullable": true
-        },
-        "secretsConfiguration": {
-          "description": "Configuration for secrets to be made available during runtime.",
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/SecretConfiguration",
-            "x-nullable": true
-          },
-          "x-ms-mutability": [
-            "create",
-            "read"
-          ],
-          "x-nullable": true
-        },
         "services": {
           "description": "List of JobEndpoints.\r\nFor local jobs, a job endpoint will have an endpoint value of FileStreamObject.",
           "type": "object",
@@ -20820,31 +20797,6 @@
       },
       "additionalProperties": false
     },
-    "SecretConfiguration": {
-      "description": "Secret Configuration definition.",
-      "type": "object",
-      "properties": {
-        "uri": {
-          "description": "Secret Uri.\r\nSample Uri : https://myvault.vault.azure.net/secrets/mysecretname/secretversion",
-          "type": "string",
-          "x-ms-mutability": [
-            "create",
-            "read"
-          ],
-          "x-nullable": true
-        },
-        "workspaceSecretName": {
-          "description": "Name of secret in workspace key vault.",
-          "type": "string",
-          "x-ms-mutability": [
-            "create",
-            "read"
-          ],
-          "x-nullable": true
-        }
-      },
-      "additionalProperties": false
-    },
     "SecretsType": {
       "description": "Enum to determine the datastore secrets type.",
       "enum": [
@@ -21151,6 +21103,7 @@
         "args": {
           "description": "Arguments for the job.",
           "type": "string",
+          "example": " --input abfss://blob-container@testgen2.dfs.core.windows.net/mltable",
           "x-ms-mutability": [
             "create",
             "read"
@@ -21158,7 +21111,7 @@
           "x-nullable": true
         },
         "codeId": {
-          "description": "[Required] ARM resource ID of the code asset.",
+          "description": "[Required] arm-id of the code asset.",
           "minLength": 1,
           "pattern": "[a-zA-Z0-9_]",
           "type": "string",
@@ -21174,6 +21127,11 @@
             "type": "string",
             "x-nullable": true
           },
+          "example": [
+            {
+              "spark.driver.memory": "2g"
+            }
+          ],
           "x-ms-mutability": [
             "create",
             "read"
